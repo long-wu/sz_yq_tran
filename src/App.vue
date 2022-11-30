@@ -1,20 +1,18 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png" />
-  <HelloWorld msg="Welcome to Your Vue.js App" />
+  <L7-map></L7-map>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
-
+import L7Map from '@/view/map'
 export default {
-  name: "App",
+  name: 'App',
   components: {
-    HelloWorld,
-  },
-};
+    L7Map
+  }
+}
 </script>
 
-<style lang="scss">
+<style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
