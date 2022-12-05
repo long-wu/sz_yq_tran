@@ -21,4 +21,7 @@ export default {
   color: #2c3e50;
   margin-top: 60px;
 }
+.l7-control-logo, .amap-copyright, .amap-logo {
+  display: none !important;
+}
 </style>

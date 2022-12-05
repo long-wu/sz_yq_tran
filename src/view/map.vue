@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { Scene, GaodeMap, PolygonLayer } from '@antv/l7'
+import { Scene, GaodeMap, PolygonLayer, Control } from '@antv/l7'
 import { csvToJson } from '@/util/util'
 export default {
     name: 'L7Map',
@@ -27,7 +27,7 @@ export default {
             if(value < 10) return '#f1fe00';
             if(value < 100) return '#ffc20b';
             if(value < 500) return '#de7e00';
-            return '#ff1a01';
+            return '#ff1a01'; 
         }
     },
     computed: {},
@@ -51,6 +51,30 @@ export default {
                 f.properties = r[0][i];
             });
         });
+        const legend = new Control({
+            position: "bottomright"
+        });
+        legend.onAdd = function () {
+            const el = document.createElement("div");
+            el.className = "infolegend legend";
+            el.style.backgroundColor = '#ffffff';
+            el.style.textAlign = 'left';
+            el.style.padding = '10px';
+            el.style.borderRadius = '3px';
+            el.style.boxShadow = '-1px -1px 1px 0px white';
+            el.style.fontWeight = 'blod';
+            const grades = [0, 1, 10, 100, 500], color = ['#f1f1f1', '#f1fe00', '#ffc20b', '#de7e00', '#ff1a01'];
+            for (let i = 0; i < grades.length; i++) {
+            el.innerHTML +=
+                '<i style="background:' +
+                color[i] +
+                ';width: 14px;height:14px;display: inline-block"></i> ' +
+                grades[i] +
+                (grades[i + 1] ? "–" + grades[i + 1] + "<br>" : "+");
+            }
+            return el;
+        };
+        scene.addControl(legend);
         Promise.all([comminitiesData, new PolygonLayer()]).then(r => { // 基于社区数据构建面图层
             const szC = r[1];
             szC.source(r[0])
@@ -119,5 +143,13 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
+        .legend {
+            background-color: #e7e7e7;
+            text-align: left;
+            padding: 10px;
+            border-radius: 3px;
+            box-shadow: -1px -1px 1px 0px white;
+            font-weight: bold;
+        }
     }
 </style>
