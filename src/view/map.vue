@@ -75,24 +75,25 @@ export default {
             return el;
         };
         scene.addControl(legend);
-        Promise.all([comminitiesData, new PolygonLayer()]).then(r => { // 基于社区数据构建面图层
-            const szC = r[1];
-            szC.source(r[0])
-                .color(currentTime.toString(), this.setColor)
-                .shape('fill')
-                .style({
-                    opacity: 1
-                });
-            scene.on('loaded', () => { // 在全局场景加载完成后添加图层
-                scene.addLayer(szC);
-            });
-            this.timer = setInterval(() => {
-                currentTime += 48;
-                if(currentTime > maxTime) currentTime = 0;
-                szC.color(currentTime.toString(), this.setColor);
-                scene.render();
-            }, 1500);
-        });
+        // Promise.all([comminitiesData, new PolygonLayer()]).then(r => { // 基于社区数据构建面图层
+        //     const szC = r[1];
+        //     szC.source(r[0])
+        //         .color(currentTime.toString(), this.setColor)
+        //         .shape('fill')
+        //         .style({
+        //             opacity: 1
+        //         });
+        //     scene.on('loaded', () => { // 在全局场景加载完成后添加图层
+        //         scene.addLayer(szC);
+        //     });
+        //     this.timer = setInterval(() => {
+        //         currentTime += 48;
+        //         if(currentTime > maxTime) currentTime = 0;
+        //         szC.color(currentTime.toString(), this.setColor);
+        //         scene.render();
+        //     }, 1500);
+        // });
+        
         // if(this.scene) this.scene.render();
         // this.comminitiesData = fetch('./json/shenzhen_community_all.json').then(response => response.json());
         // Promise.all([csvToJson('./json/districtsinfo.csv'), this.comminitiesData]).then(r => {
@@ -143,6 +144,7 @@ export default {
         left: 0;
         right: 0;
         bottom: 0;
+        z-index: -1;
         .legend {
             background-color: #e7e7e7;
             text-align: left;

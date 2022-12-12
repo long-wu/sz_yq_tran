@@ -9,8 +9,11 @@
   },
   "dependencies": {
     "@antv/l7": "^2.11.2",
+    "babel-plugin-component": "^1.1.1",
     "core-js": "^3.8.3",
-    "vue": "^3.2.13"
+    "element-plus": "^2.2.26",
+    "vue": "^3.2.13",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",
