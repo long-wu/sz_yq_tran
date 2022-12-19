@@ -5,8 +5,11 @@ import ElementPlus from 'element-plus';
 import 'element-plus/theme-chalk/index.css';
 // import { ElSwitch, ElHeader } from 'element-plus';
 // const elComponents = [ElSwitch, ElHeader, ];
-
+import "@/assets/style/font.css";
 import { createStore } from 'vuex';
+
+import i18n from "./components/language";
+
 const store = createStore({
     state() {
         return {
@@ -37,9 +40,11 @@ const store = createStore({
 })
 
 const _app = createApp(App);
+_app.use(i18n)
 _app.use(store);
 _app.use(ElementPlus);
 _app.mount("#app");
+
 // elComponents.forEach(e => {
 //     _app.component(e.name, e);
 // })
